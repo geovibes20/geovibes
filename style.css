@@ -1,1 +1,182 @@
+/* style.css */
+/* Base Styles */
+body {
+  background: #f8f8fa;
+  color: #111;
+  font-family: 'SF Pro Display', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  transition: all 0.3s ease;
+}
 
+/* Map Container Styles */
+#map-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 1.5em auto;
+  position: relative;
+  background: #f1f1f3;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+#world-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Country Path Styles */
+.country-path {
+  fill: #e0e0e0;
+  stroke: #ccc;
+  stroke-width: 0.5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  vector-effect: non-scaling-stroke;
+}
+
+.country-path:hover {
+  fill: #d0e3ff;
+  stroke: #007aff;
+  stroke-width: 1;
+}
+
+.country-path.guessed {
+  fill: #34c759;
+  stroke: #2a9e4a;
+  stroke-width: 1;
+  animation: pulse 0.5s ease;
+}
+
+.country-path.missed {
+  fill: #ff3b30;
+  stroke: #d63229;
+  stroke-width: 1;
+}
+
+/* Capital Marker Styles */
+.capital-marker {
+  fill: #007aff;
+  stroke: white;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.capital-marker.guessed {
+  fill: #34c759;
+  stroke: white;
+  animation: bounce 0.5s ease;
+}
+
+.capital-marker.missed {
+  fill: #ff3b30;
+  stroke: white;
+}
+
+.capital-label {
+  font-family: 'SF Pro Display', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  fill: white;
+  text-anchor: middle;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.country-path:hover + .capital-label,
+.capital-marker:hover + .capital-label {
+  opacity: 1;
+}
+
+/* Country Info Tooltip */
+.country-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+  max-width: 200px;
+  text-align: center;
+}
+
+/* Zoom Controls */
+.zoom-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.zoom-btn {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #map-container {
+    border-radius: 12px;
+  }
+  
+  .capital-label {
+    font-size: 8px;
+  }
+  
+  .zoom-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .zoom-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #map-container {
+    border-radius: 8px;
+  }
+  
+  .country-path {
+    stroke-width: 0.3;
+  }
+  
+  .capital-marker {
+    stroke-width: 1;
+  }
+}
